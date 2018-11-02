@@ -5,6 +5,7 @@
 
 import React from 'react';
 import{ Link } from 'react-router-dom';
+import Shelf from './Shelves';
 
 
 class MainPage extends React.Component{
