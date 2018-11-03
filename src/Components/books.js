@@ -3,10 +3,18 @@
 //render>return(entire code for book)
 //Don't need to change bookshelfchanger
 //Book needs to access unique author, thumbnail, title
+//Look at ListContacts file from lessons
 import React from 'react';
 
+
+
 class Book extends React.Component{
-  render(){
+
+  state ={
+    value:"move"
+  }
+
+   render(){
     return(
       <div>
         <li>
@@ -14,7 +22,7 @@ class Book extends React.Component{
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
             <div className="book-shelf-changer">
-              <select>
+              <select value={this.state.value} onChange={(event)=> (this.props.updateShelf(this.props.book, event.target.value))}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -32,7 +40,6 @@ class Book extends React.Component{
 
     )
   }
-
 }
 
 export default Book
