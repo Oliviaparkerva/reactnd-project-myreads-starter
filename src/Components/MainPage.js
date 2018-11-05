@@ -20,41 +20,41 @@ class MainPage extends React.Component{
     BooksAPI.getAll()
     .then(books => {
       this.setState({books})
-    });
+    })
   }
-	
-	updateShelf = (book, shelf) => {
-		BooksAPI.update(book, shelf)
-		.then(books => {
-			book.shelf = shelf;
-			this.setState((state) =>({
-			books: state.books.filter(b =>b.id !== book.id).concat(book)
-			}));	
-		});
-	}
-	
+
+  updateShelf = (book, shelf) => {
+      BooksAPI.update(book, shelf)
+      .then(books => {
+          book.shelf = shelf;
+          this.setState(state =>({
+          books: state.books.filter(b =>b.id !== book.id).concat(book)
+          }))
+      })
+  }
+
 
   render(){
     return(
       <div>
-        <div className="list-books">
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
-        <div className="list-books-content">
-          <div>
-            <Shelf updateShelf={this.updateShelf} name="Current Reads" books={this.state.books.filter(book => book.shelf === "currentlyReading")}/>
-	        <Shelf updateShelf={this.updateShelf} name="Want to Read" books={this.state.books.filter(book => book.shelf === "wantToRead")}/>
-            <Shelf updateShelf={this.updateShelf} name="Read" books={this.state.books.filter(book => book.shelf === "read")}/>
+          <div  className="list-books">
+          <div className="list-books-title">
+            <h1>MyReads</h1>
+          </div>
+          <div className="list-books-content">
+            <div>
+              <Shelf updateShelf={this.updateShelf} name="Current Reads" books={this.state.books.filter(b => b.shelf === "currentlyReading")}/>
+              <Shelf updateShelf={this.updateShelf} name="Want to Read" books={this.state.books.filter(b => b.shelf === "wantToRead")}/>
+              <Shelf updateShelf={this.updateShelf} name="Read" books={this.state.books.filter(b => b.shelf === "read")}/>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="open-search">
-        <Link to="/search">Add a book</Link>
-      </div>
+        <div className="open-search">
+          <Link to="/search">Add a book</Link>
+        </div>
       </div>
 
-    );
+    )
   }
 }
 
