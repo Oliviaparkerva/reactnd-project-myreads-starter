@@ -1,6 +1,7 @@
 //Imports: React,App.css, Route to use paths, mainpage & search page components from components folder
 //Exports:BooksApp
-//ReactRoute   exact pathComponent https://is.gd/hfKjeH
+//ReactRoute   exact path
+//Component https://is.gd/hfKjeH
 
 import React from 'react'
 import './App.css'

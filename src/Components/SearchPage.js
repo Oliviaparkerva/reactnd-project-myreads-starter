@@ -2,14 +2,16 @@ import React from 'react';
 import{ Link } from 'react-router-dom';
 import Book from './Books';
 import * as BooksAPI from '../BooksAPI';
+import MainPage from './MainPage';
+import Shelf from './Shelves';
 
 class SearchPage extends React.Component{
 
   state={
       query:'',
-      queryResults:[]
+      queryResults:[],
+      shelf:''
   }
-
   updateQuery = (query) =>{
     this.setState({ query })
     this.showResults(query)
@@ -20,7 +22,7 @@ class SearchPage extends React.Component{
       BooksAPI.search(query)
       .then((queryResults) =>{
         if(queryResults.error){
-          this.setState({queryResults:[]});
+          this.setState({queryResults:[]})
         }else{
           this.setState({queryResults})
         }
@@ -33,8 +35,7 @@ class SearchPage extends React.Component{
 
 render() {
 
-const { books, book, name, updateShelf} = this.props
-
+console.log('se3archProps')
 return (
   <div className="search-books">
     <div className="search-books-bar">
@@ -44,15 +45,20 @@ return (
         type="text"
         placeholder="Search by title or author"
         value={this.state.query}
-        onChange={(event) => this.updateQuery(event.target.value)}
+        onChange={(event) =>  this.updateQuery(event.target.value)}
         />
       </div>
     </div>
     <div className="search-books-results">
       <ol className="books-grid">
-      {
-      this.state.queryResults.map((book => <Book updateShelf={updateShelf} book={book} key={book.id}/>))
-      }
+        {this.state.queryResults.map((book) =>
+			<li>
+          <Book
+              updateShelf={this.props.updateShelf}
+              book={book}
+              />
+			</li>
+        )}
       </ol>
     </div>
   </div>

@@ -10,6 +10,7 @@ import * as BooksAPI from '../BooksAPI';
 import Shelf from './Shelves';
 
 
+
 class MainPage extends React.Component{
 
   state = {
@@ -58,4 +59,4 @@ class MainPage extends React.Component{
   }
 }
 
-export default MainPage
+export default MainPage;

@@ -7,15 +7,15 @@ class Shelf extends React.Component{
 
   render(){
 
-		const { books, book, name, updateShelf} = this.props
+		const {books, name, updateShelf} = this.props
 
     return(
       <div className="bookshelf">
         <h2 className="bookshelf-title">{name}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-          	{book.map((book,key) =>
-							<Book key={book.id} book={book}key={key} updateShelf={updateShelf} />
+          	{books.map((book,key) =>
+							<Book book={book}key={key} updateShelf={updateShelf} />
             )}
           </ol>
         </div>
